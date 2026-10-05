@@ -1,0 +1,118 @@
+# ============================================================
+# CyberSentinel - Git ignore rules
+# Patterns below are derived from the actual project layout:
+#   backend/   FastAPI app (venv/, .env, cybersentinel.db, reports/, chroma_db/)
+#   frontend/  Vite + React app (node_modules/, dist/)
+# ============================================================
+
+# --- Secrets and environment files -----------------------------------------
+# Real .env files must never be committed. The negations keep the safe
+# templates (.env.example) tracked.
+.env
+.env.*
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.example
+
+# Key material and certificates (none are used by this project, but a stray
+# private key must never reach the remote).
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Test / type-check / lint caches and coverage output
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Packaging / build metadata
+*.egg-info/
+*.egg
+build/
+dist/
+.eggs/
+
+# --- Virtual environments ---------------------------------------------------
+# The local environment lives at backend/venv/
+.venv/
+venv/
+env/
+ENV/
+virtualenv/
+
+# --- Databases and local runtime state --------------------------------------
+# SQLite development database (backend/cybersentinel.db) and any variants.
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Chroma vector store used by the RAG knowledge base
+chroma_db/
+backend/chroma_db/
+
+# --- Generated reports ------------------------------------------------------
+# REPORT_OUTPUT_DIR resolves to ./reports relative to the backend root.
+backend/reports/
+reports/
+report_output/
+
+# --- Node / frontend --------------------------------------------------------
+node_modules/
+frontend/dist/
+frontend/build/
+.vite/
+.vite-inspect/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# --- Logs -------------------------------------------------------------------
+*.log
+logs/
+backend/logs/
+frontend/logs/
+
+# --- Test and coverage scratch output ---------------------------------------
+.pytest_cache
+coverage/
+tmp/
+temp/
+
+# --- Temporary and backup files --------------------------------------------
+*.tmp
+*.temp
+*.bak
+*.orig
+*.swp
+*~
+*.rej
+
+# --- OS / editor ------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
